@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TechTest_KawanLama.Models.ToDo>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.activities_no)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.activities_no)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>   
+                <a asp-action="Edit" asp-route-id="@item.activities_no">Edit</a>
+                @if (item.Status == "Unmarked")
+                {
+                    <a asp-action="Delete" asp-route-id="@item.activities_no">Delete</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
